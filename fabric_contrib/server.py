@@ -1,6 +1,7 @@
 # coding=utf-8
 import os
-from fabric.api import cd, run, local, put
+from fabric.api import env, cd, run, local, put
+from fabric.contrib.files import upload_template
 
 
 def service_restart(service_name):
@@ -13,6 +14,21 @@ def service_stop(service_name):
 
 def service_start(service_name):
     run('sudo /usr/sbin/service {} start'.format(service_name))
+
+
+def upload_configs():
+    path_config = env.copy_config_files['path']
+
+    for config in env.copy_config_files['files']:
+        upload_template(
+            config['file'],
+            config['path'],
+            context=config['params'],
+            template_dir=path_config,
+            use_jinja=True,
+            use_sudo=False,
+            backup=False
+        )
 
 
 def upload_to_server(local_dir, remote_dir):
