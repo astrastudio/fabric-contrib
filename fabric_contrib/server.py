@@ -4,6 +4,11 @@ from fabric.api import env, cd, run, local, put
 from fabric.contrib.files import upload_template
 
 
+def restart_services():
+    for service in env.restart_services:
+        service_restart(service)
+
+
 def service_restart(service_name):
     run('sudo /usr/sbin/service {} restart'.format(service_name))
 
