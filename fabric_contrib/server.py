@@ -4,7 +4,7 @@ from fabric.api import env, cd, run, local, put
 from fabric.contrib.files import upload_template
 
 
-def restart_services():
+def services_restart():
     for service in env.restart_services:
         service_restart(service)
 
