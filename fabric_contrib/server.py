@@ -19,7 +19,7 @@ def service_start(service_name):
 def upload_configs():
     path_config = env.upload_config_files['path']
 
-    for config in env.copy_config_files['files']:
+    for config in env.upload_config_files['files']:
         upload_template(
             config['file'],
             config['path'],
