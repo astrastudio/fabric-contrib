@@ -17,7 +17,7 @@ def service_start(service_name):
 
 
 def upload_configs():
-    path_config = env.copy_config_files['path']
+    path_config = env.upload_config_files['path']
 
     for config in env.copy_config_files['files']:
         upload_template(
