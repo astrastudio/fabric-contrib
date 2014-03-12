@@ -7,7 +7,7 @@ from fabric.api import local
 
 @contextmanager
 def save_original_file(file_path):
-    tmp_file = os.path.join('/', 'tmp', uuid.uuid4())
+    tmp_file = os.path.join('/', 'tmp', unicode(uuid.uuid4()))
     lcp(file_path, tmp_file)
     yield
     lcp(tmp_file, file_path)
