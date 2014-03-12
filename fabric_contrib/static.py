@@ -4,7 +4,7 @@ import uuid
 
 from fabric.api import local
 
-from .src.files import lrm
+from fabric_contrib.files import lrm
 
 
 def less_compilation(less_file, css_file):
