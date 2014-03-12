@@ -1,6 +1,16 @@
 # coding=utf-8
 import os
+import uuid
+from contextlib import contextmanager
 from fabric.api import local
+
+
+@contextmanager
+def save_original_file(file_path):
+    tmp_file = os.path.join('/', 'tmp', uuid.uuid4())
+    lcp(file_path, tmp_file)
+    yield
+    lcp(tmp_file, file_path)
 
 
 def lmkdir(directory, delete_if_exists=False):
