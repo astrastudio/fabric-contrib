@@ -7,7 +7,12 @@ COMMAND_SYNCDB = 'syncdb'
 COMMAND_MIGRATE = 'migrate'
 
 
-def django_command(command):
+def django_commands():
+    for command in env.django_commands:
+        _django_command(command)
+
+
+def _django_command(command):
     _command = {
         'default': '{python} {manage} {command}',
 

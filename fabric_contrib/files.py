@@ -13,14 +13,7 @@ def save_original_file(file_path):
     lcp(tmp_file, file_path)
 
 
-def lmkdir(directory, delete_if_exists=False):
-    if os.path.exists(directory):
-        if delete_if_exists:
-            lrm(directory)
-        else:
-            message = 'Path "{}" exists.'.format(directory)
-            raise ValueError(message)
-
+def lmkdir(directory):
     local('mkdir -p {}'.format(directory))
 
 
