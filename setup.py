@@ -10,6 +10,6 @@ setup(
     version=__version__,
     author='Ivan Yurin',
     url='https://github.com/astrastudio/fabric-contrib/',
-    packages=["fabric_conrib"],
+    packages=["fabric_contrib"],
     platforms="Posix; MacOS X; Windows",
 )
