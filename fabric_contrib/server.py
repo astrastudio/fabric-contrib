@@ -10,7 +10,13 @@ def services_restart():
 
 
 def service_restart(service_name):
-    run('sudo /usr/sbin/service {} restart'.format(service_name))
+    default = 'restart'
+    overrides = {
+        'celeryd': 'graceful',
+    }
+
+    run('sudo /usr/sbin/service {} {}'.format(
+        service_name, overrides.get(service_name, default)))
 
 
 def service_stop(service_name):
