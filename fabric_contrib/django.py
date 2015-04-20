@@ -9,8 +9,7 @@ COMMAND_MIGRATE = 'migrate'
 _default_command = '{python} {manage} {command}'
 _commands_list = {
     COMMAND_COLLECTSTATIC: 'yes yes | {python} {manage} {command}',
-    COMMAND_MIGRATE: '{python} {manage} {command} --noinput -v0 --merge '
-                     '--ignore-ghost-migrations',
+    COMMAND_MIGRATE: '{python} {manage} {command} --noinput',
 }
 
 
