@@ -9,7 +9,7 @@ COMMAND_MIGRATE = 'migrate'
 _default_command = '{python} {manage} {command}'
 _commands_list = {
     COMMAND_COLLECTSTATIC: 'yes yes | {python} {manage} {command}',
-    COMMAND_MIGRATE: '{python} {manage} {command} --noinput --merge',
+    COMMAND_MIGRATE: '{python} {manage} {command} --noinput',
 }
 
 
