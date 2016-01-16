@@ -1,39 +1,38 @@
 # coding=utf-8
 import os
-from fabric.api import env, cd, run, local, put
+from fabric.api import cd, run, local, put
 from fabric.contrib.files import upload_template
 
 
-def services_restart():
-    for service in env.restart_services:
-        service_restart(service)
-
-
 def service_restart(service_name):
-    run('sudo /usr/sbin/service {} restart'.format(service_name))
+    service_command(service_name, 'restart')
 
 
 def service_stop(service_name):
-    run('sudo /usr/sbin/service {} stop'.format(service_name))
+    service_command(service_name, 'stop')
 
 
 def service_start(service_name):
-    run('sudo /usr/sbin/service {} start'.format(service_name))
+    service_command(service_name, 'start')
 
 
-def upload_configs():
-    path_config = env.upload_config_files['path']
+def service_command(service_name, command):
+    run('sudo /usr/sbin/service {} {}'.format(service_name, command))
 
-    for config in env.upload_config_files['files']:
-        upload_template(
-            config['file'],
-            config['path'],
-            context=config['params'],
-            template_dir=path_config,
-            use_jinja=True,
-            use_sudo=False,
-            backup=False
-        )
+
+def upload_config(local_path, remote_path, params):
+    file_name = os.path.basename(local_path)
+    path = os.path.abspath(local_path)
+
+    upload_template(
+        file_name,
+        remote_path,
+        context=params,
+        template_dir=path,
+        use_jinja=True,
+        use_sudo=False,
+        backup=False
+    )
 
 
 def upload_to_server(local_dir, remote_dir):
