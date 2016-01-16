@@ -22,7 +22,7 @@ def service_command(service_name, command):
 
 def upload_config(local_path, remote_path, params):
     file_name = os.path.basename(local_path)
-    path = os.path.abspath(local_path)
+    path = os.path.dirname(local_path)
 
     upload_template(
         file_name,
